@@ -11,7 +11,7 @@ import cutText from '../../../utils/cutText';
 const PostSummary = ({ id, title, content }) => (
   <article className="post-summary">
     <SmallTitle>{title}</SmallTitle>
-    <HtmlBox>{ cutText(content, 1) }</HtmlBox>
+    <HtmlBox>{ cutText(content, 20) }</HtmlBox>
     <Button variant="primary">
       Read more
     </Button>
