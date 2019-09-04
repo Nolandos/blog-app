@@ -1,8 +1,23 @@
+//Imports
 const express = require('express');
 const cors = require('cors');
 const config = require('./config');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const loadTestData = require('./testData');
+
+//Import Routes
+const postsRoute  = require('./routes/posts');
+
+//Create app 
+const app = express();
+
+//Middlewares
+app.use(helmet());
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use('/api', postsRoute);
 
 // connects our back end code with the database
 mongoose.connect(config.DB, { useNewUrlParser: true });
@@ -13,19 +28,6 @@ db.once('open', () => {
     loadTestData();
 });
 db.on('error', (err) => console.log('Error ' + err));
-
-//Import Routes
-const postsRoute  = require('./routes/posts');
-
-//Create app 
-const app = express();
-
-//Middlewares
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use('/api', postsRoute);
-
 
 //ROUTES
 app.get('/', (req, res) => {
