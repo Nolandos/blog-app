@@ -1,9 +1,12 @@
 import React from 'react';
 
-const SinglePost = () => (
-  <div>
-    <h1>Single post</h1>
-  </div>
-);
+import SinglePost from '../../features/SinglePost/SinglePost';
 
-export default SinglePost;
+const SinglePostPage = ({ match }) => {
+
+  return (
+    <SinglePost match= { match } />
+  );
+} 
+
+export default SinglePostPage;
