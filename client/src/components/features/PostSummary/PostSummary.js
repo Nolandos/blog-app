@@ -8,10 +8,12 @@ import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 
 import cutText from '../../../utils/cutText';
+import Author from '../../common/Author/Author';
 
-const PostSummary = ({ id, title, content }) => (
+const PostSummary = ({ id, title, content, author }) => (
   <article className="post-summary">
     <SmallTitle>{title}</SmallTitle>
+    <Author>{ author }</Author>
     <HtmlBox>{ cutText(content, 50) }</HtmlBox>
       <Link to = {`/posts/${id}`}>
         <Button variant="primary">
@@ -24,6 +26,7 @@ const PostSummary = ({ id, title, content }) => (
 PostSummary.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
+  author: PropTypes.string,
   content: PropTypes.string,
 };
 

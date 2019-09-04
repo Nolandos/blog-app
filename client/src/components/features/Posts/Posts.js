@@ -10,6 +10,7 @@ const Posts = () => {
   const dispatch = useDispatch();
   const posts = useSelector(({ posts }) => posts.data);
   const request = useSelector(({ posts }) => posts.request );
+  console.log(posts);
 
   useEffect(() => {
     dispatch(loadPostsRequest());

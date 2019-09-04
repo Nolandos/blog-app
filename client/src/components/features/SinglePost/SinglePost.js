@@ -6,6 +6,7 @@ import { loadSinglePostRequest } from '../../../redux/postsReducer'
 import Spinner from '../../common/Spinner/Spinner';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
 import Alert from '../../common/Alert/Alert';
+import Author from '../../common/Author/Author';
 
 const SinglePost = ({ match }) => {
     const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const SinglePost = ({ match }) => {
         { !request.pending && request.success && 
           <div>
             <PageTitle>{ singlePost.title }</PageTitle>
+            <Author>{ singlePost.author }</Author>
             <HtmlBox>{ singlePost.content }</HtmlBox>
           </div>
         }
