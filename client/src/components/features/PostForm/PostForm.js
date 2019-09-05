@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useFormInput from '../../../utils/myHooks/useFormInput'; // import custom hook
 import './PostForm.scss';
@@ -15,7 +15,7 @@ import 'medium-editor/dist/css/medium-editor.css';
 import 'medium-editor/dist/css/themes/default.css';
 
 //Import Redux elements
-import { addPostRequest } from '../../../redux/postsReducer';
+import { addPostRequest, resetRequest } from '../../../redux/postsReducer';
 
 
 const PostForm = () => {
@@ -25,6 +25,10 @@ const PostForm = () => {
     const authorInput = useFormInput('');
     const [content, setContent] = useState('');
     const request = useSelector(({ posts }) => posts.request );
+ 
+    useEffect(() => {
+        dispatch(resetRequest());
+    },[]);
 
     const handleEditor = (text) => {
         setContent(text);
