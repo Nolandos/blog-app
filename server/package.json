@@ -10,6 +10,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.20.1",
-    "mongoose": "^5.6.12"
+    "mongoose": "^5.6.12",
+    "react-medium-editor": "^1.8.1",
+    "uuid": "^3.3.3"
   }
 }

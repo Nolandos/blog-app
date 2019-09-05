@@ -1,4 +1,5 @@
 const Post = require('../models/postsModel');
+const uuid = require('uuid');
 
 exports.getPosts = async (req, res) => {
 
@@ -19,4 +20,20 @@ exports.getSinglePost = async (req, res) => {
   }
 
 };
+
+exports.addPost = async function (req, res) {
+
+  try {
+
+    let newPost = new Post(req.body); 
+    newPost.id = uuid(); //create id for post
+
+    //postSaved = await newPost.save();
+    res.status(200).json(await newPost.save());
+
+  } catch(err) {
+    res.status(500).json(err);
+  }
+
+}
 

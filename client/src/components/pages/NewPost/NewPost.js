@@ -1,8 +1,8 @@
 import React from 'react';
-
+import PostForm from '../../features/PostForm/PostForm';
 const NewPost = () => (
   <div>
-    <h1>NewPost</h1>
+    <PostForm />
   </div>
 );
 
