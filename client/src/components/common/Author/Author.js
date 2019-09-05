@@ -5,7 +5,6 @@ import './Author.scss';
 
 const Author = ({ children }) => (
     <p>
-    {console.log(children)}
     Author: { children }
     </p>
 )
