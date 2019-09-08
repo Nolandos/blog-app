@@ -13,8 +13,8 @@ import 'medium-editor/dist/css/themes/default.css';
 
 
 const PostForm = ({title, author, content, handleSubmit}) => {
-    const postAuthor = useFormInput(title || '');
-    const postTitle = useFormInput(author || '')
+    const postTitle = useFormInput(title || '');
+    const postAuthor = useFormInput(author || '')
     const [text, setContent] = useState(content || '');
 
     const handleEditor = (text) => {
