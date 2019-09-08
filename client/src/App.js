@@ -9,6 +9,7 @@ import Contact from './components/pages/Contact/Contact';
 import NotFound from './components/pages/NotFound/NotFound';
 import NewPost from './components/pages/NewPost/NewPost';
 import SinglePost from './components/pages/SinglePost/SinglePost';
+import EditPost from './components/pages/EditPost/EditPost';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" exact component={ Home } />
         <Route path="/posts" exact component={ Posts } />
         <Route path="/posts/new" exact component={ NewPost } />
+        <Route path="/posts/edit/:id" exact component={ EditPost } />
         <Route path="/posts/:id" exact component={ SinglePost } />
         <Route path="/contact" exact component={ Contact } />
         <Route component={ NotFound } />

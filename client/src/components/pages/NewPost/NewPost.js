@@ -1,9 +1,9 @@
 import React from 'react';
-import PostForm from '../../features/PostForm/PostForm';
-const NewPost = () => (
+import NewPost from '../../features/NewPost/NewPost';
+const NewPostPage = () => (
   <div>
-    <PostForm />
+    <NewPost />
   </div>
 );
 
-export default NewPost;
+export default NewPostPage;

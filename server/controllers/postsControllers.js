@@ -45,9 +45,9 @@ exports.updatePost = async function (req, res) {
           author: req.body.author,
           content: req.body.content
         }
-      }
+      }, { runValidators: true } 
     );
-    res.status(200).json(Post.updatePost);
+    res.status(200).json(updatePost);
 
   } catch(err) {
     res.status(500).json(err);

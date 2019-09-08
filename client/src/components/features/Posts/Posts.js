@@ -12,7 +12,7 @@ const Posts = () => {
   const request = useSelector(({ posts }) => posts.request );
 
   useEffect(() => {
-    dispatch(loadPostsRequest());
+    dispatch(loadPostsRequest());  
   },[]);
 
     return (
