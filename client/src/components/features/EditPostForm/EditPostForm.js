@@ -17,7 +17,6 @@ const EditPost = ({match}) => {
     const postID = match.params.id;
 
     const editPost = (post) => {
-        console.log(post);
         dispatch(editPostRequest(post, postID ));
     }
     
