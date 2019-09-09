@@ -15,5 +15,7 @@ router.get('/posts/:id', postControllers.getSinglePost);
 router.post('/posts', postControllers.addPost );
 //update post
 router.patch('/posts/:id', postControllers.updatePost);
+// get posts by range
+router.route('/posts/range/:startAt/:limit').get(postControllers.getPostsByRange);
 
 module.exports = router;

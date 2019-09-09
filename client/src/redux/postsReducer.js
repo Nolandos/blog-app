@@ -8,6 +8,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 //ACTION TYPES
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
 export const LOAD_SINGLE_POST = createActionName('LOAD_SINGLE_POST');
+export const LOAD_POSTS_PAGE = createActionName('LOAD_POSTS_PAGE');
 export const START_REQUEST = createActionName('START_REQUEST');
 export const END_REQUEST = createActionName('END_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
@@ -15,7 +16,8 @@ export const RESET_REQUEST = createActionName('RESET_REQUEST');
 
 //ACTIONS
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
-export const loadSinglePost = payload => ({payload, type: LOAD_SINGLE_POST })
+export const loadSinglePost = payload => ({payload, type: LOAD_SINGLE_POST });
+export const loadPostsByPage = payload => ({ payload, type: LOAD_POSTS_PAGE });
 export const startRequest = () => ({ type: START_REQUEST });
 export const endRequest = () => ({ type: END_REQUEST });
 export const errorRequest = error => ({ error, type: ERROR_REQUEST });
@@ -53,32 +55,55 @@ export const loadSinglePostRequest = (id) => {
 };
 
 export const addPostRequest = (post) => {
-
   return async dispatch => {
-
     dispatch(startRequest());
-    try {
 
+    try {
       let res = await axios.post(`${API_URL}/posts`, post);
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(endRequest());
-
     } catch(e) {
       dispatch(errorRequest(e.message));
     }
-
   };
 };
 
 export const editPostRequest = (post, id) => {
+  return async dispatch => {
+    dispatch(startRequest());
 
+    try {
+      let res = await axios.patch(`${API_URL}/posts/${id}`, post);
+      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      dispatch(endRequest());
+    } catch(e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
+export const loadPostsByPageRequest = (page) => {
   return async dispatch => {
 
     dispatch(startRequest());
     try {
 
-      let res = await axios.patch(`${API_URL}/posts/${id}`, post);
+      const postsPerPage = 1;
+
+      const startAt = (page - 1) * postsPerPage;
+      const limit = postsPerPage;
+
+      let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+
+      const payload = {
+        posts: res.data.posts,
+        amount: res.data.amount,
+        postsPerPage,
+        presentPage: page,
+      };
+
+      dispatch(loadPostsByPage(payload));
       dispatch(endRequest());
 
     } catch(e) {
@@ -96,7 +121,10 @@ const initialState = {
     error: null,
     success: null
   },
-  singlePost: {}
+  singlePost: {},
+  amount: 0,
+  postsPerPage: 10,
+  presentPage: 1
 };
 
 //REDUCER
@@ -106,6 +134,14 @@ export default function ordersReducer(state = initialState, action = {}) {
         return  { ...state, data: action.payload };
     case LOAD_SINGLE_POST:
       return { ...state, singlePost: action.payload };
+    case LOAD_POSTS_PAGE:
+      return {
+        ...state,
+        postsPerPage: action.payload.postsPerPage,
+        presentPage: action.payload.presentPage,
+        amount: action.payload.amount,
+        data: [...action.payload.posts],
+      };
     case START_REQUEST:
       return { ...state, request: { pending: true, error: null, success: null } };
     case END_REQUEST:
