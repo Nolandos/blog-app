@@ -16,14 +16,15 @@ const Posts = (props) => {
 
   const [ initialPage ] = useState(props.initialPage || 1);
   const [ postsPerPage ] = useState(props.postsPerPage || 1);
-  const [ pagination ] = useState(props.pagination || true );
-
+  const [ pagination, setPagination ] = useState(props.pagination);
+  
   const loadPostsPage = (page) => {
     dispatch(loadPostsByPageRequest(page, postsPerPage));  
   }
 
   useEffect(() => {
-    dispatch(loadPostsByPageRequest(initialPage, postsPerPage));  
+    dispatch(loadPostsByPageRequest(initialPage, postsPerPage)); 
+    if( props.pagination === undefined) setPagination(true); 
   },[]);
 
     return (
@@ -39,8 +40,7 @@ const Posts = (props) => {
 
 Posts.propTypes = {
   initialPage: PropTypes.number,
-  postPerPage: PropTypes.number,
-  pagination: PropTypes.bool,
+  postPerPage: PropTypes.number
 };
 
 export default Posts;

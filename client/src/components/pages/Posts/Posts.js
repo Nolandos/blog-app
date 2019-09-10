@@ -9,7 +9,7 @@ const PostsPage = () => {
     <div>
       <PageTitle>Posts list</PageTitle>
       <PostsCounter />
-      <Posts />
+      <Posts/>
     </div>
   )
 };
