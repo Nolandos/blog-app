@@ -4,6 +4,7 @@ const cors = require('cors');
 const config = require('./config');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 const loadTestData = require('./testData');
 
 //Import Routes
@@ -15,9 +16,11 @@ const app = express();
 //Middlewares
 app.use(helmet());
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(mongoSanitize());
 app.use('/api', postsRoute);
+
 
 // connects our back end code with the database
 mongoose.connect(config.DB, { useNewUrlParser: true });
