@@ -4,19 +4,35 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const Pagination = (props) => {
     const [presentPage, setPage] = useState(props.initialPage || 1);
-    const { pages } = props;
+    const { pages, onPageChange } = props;
 
     const changePage = (newPage) => {
-        const { onPageChange } = props;
-
         setPage(newPage);
         onPageChange(newPage);
+    }
+
+    const getNextPage = () => {
+        const nextPage = presentPage + 1;
+        setPage(nextPage);
+        onPageChange(nextPage);
+    }
+
+    const getPrevPage = () => {
+        const prevPage = presentPage - 1;
+        setPage(prevPage);
+        onPageChange(prevPage);
     }
 
     return (
         <div className="pagination">
             <ul className="pagination__list">
-                { presentPage > 1 && <li className="pagination__list__item"><IoIosArrowBack/></li> } 
+                { presentPage > 1 && 
+                    <li 
+                        className="pagination__list__item" 
+                        onClick={() => getPrevPage()} >
+                        <IoIosArrowBack/>
+                    </li>
+                } 
                 {[...Array(pages)].map((el, page) =>
                 <li
                     key={++page}
@@ -25,7 +41,12 @@ const Pagination = (props) => {
                     {page}
                 </li>
                 )}
-                {presentPage < pages && <li className="pagination__list__item"><IoIosArrowForward/></li>}
+                {presentPage < pages && 
+                <li 
+                    className="pagination__list__item"
+                    onClick={() => getNextPage()} >
+                    <IoIosArrowForward/>
+                </li>}
             </ul>
         </div>
     );
