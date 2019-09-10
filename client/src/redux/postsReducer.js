@@ -82,13 +82,13 @@ export const editPostRequest = (post, id) => {
   };
 };
 
-export const loadPostsByPageRequest = (page) => {
+export const loadPostsByPageRequest = (page, PerPage) => {
   return async dispatch => {
 
     dispatch(startRequest());
     try {
 
-      const postsPerPage = 1;
+      const postsPerPage = PerPage;
 
       const startAt = (page - 1) * postsPerPage;
       const limit = postsPerPage;
