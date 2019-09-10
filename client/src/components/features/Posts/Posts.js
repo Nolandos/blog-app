@@ -6,6 +6,7 @@ import PostsList from '../PostsList/PostsList';
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
 import Pagination from '../../common/Pagination/Pagination';
+import PropTypes from 'prop-types';
 
 const Posts = (props) => {
   const dispatch = useDispatch();
@@ -34,6 +35,12 @@ const Posts = (props) => {
         { pagination && <Pagination pages={pages} initialPage={initialPage} onPageChange={(page) => loadPostsPage(page) } />}
       </div>
     );
+};
+
+Posts.propTypes = {
+  initialPage: PropTypes.number,
+  postPerPage: PropTypes.number,
+  pagination: PropTypes.bool,
 };
 
 export default Posts;

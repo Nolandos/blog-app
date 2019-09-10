@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Pagination.scss';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
@@ -50,6 +51,12 @@ const Pagination = (props) => {
             </ul>
         </div>
     );
+};
+
+Pagination.propTypes = {
+    pages: PropTypes.number.isRequired,
+    initialPage: PropTypes.number,
+    onPageChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;
