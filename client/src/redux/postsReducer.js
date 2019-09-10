@@ -8,6 +8,7 @@ const createActionName = name => `app/${reducerName}/${name}`;
 //ACTION TYPES
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
 export const LOAD_SINGLE_POST = createActionName('LOAD_SINGLE_POST');
+export const LOAD_RANDOM_POST = createActionName('LOAD_RANDOM_POST');
 export const LOAD_POSTS_PAGE = createActionName('LOAD_POSTS_PAGE');
 export const START_REQUEST = createActionName('START_REQUEST');
 export const END_REQUEST = createActionName('END_REQUEST');
@@ -17,6 +18,7 @@ export const RESET_REQUEST = createActionName('RESET_REQUEST');
 //ACTIONS
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 export const loadSinglePost = payload => ({payload, type: LOAD_SINGLE_POST });
+export const loadRandomPost = payload => ({payload, type: LOAD_RANDOM_POST });
 export const loadPostsByPage = payload => ({ payload, type: LOAD_POSTS_PAGE });
 export const startRequest = () => ({ type: START_REQUEST });
 export const endRequest = () => ({ type: END_REQUEST });
@@ -113,6 +115,22 @@ export const loadPostsByPageRequest = (page, PerPage) => {
   };
 };
 
+export const getRandomPost = (id) => {
+  return async dispatch => {
+    dispatch(startRequest());
+
+    try {
+      let res = await axios.get(`${API_URL}/posts/random/${id}`);
+      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+      await dispatch(loadRandomPost(res.data));
+
+      dispatch(endRequest());
+    } catch(e) {
+      dispatch(errorRequest(e.message));
+    }
+  };
+};
+
 //INITIAL STATE
 const initialState = {
   data: [],
@@ -122,6 +140,7 @@ const initialState = {
     success: null
   },
   singlePost: {},
+  randomPost: {},
   amount: 0,
   postsPerPage: 10,
   presentPage: 1
@@ -134,6 +153,8 @@ export default function ordersReducer(state = initialState, action = {}) {
         return  { ...state, data: action.payload };
     case LOAD_SINGLE_POST:
       return { ...state, singlePost: action.payload };
+    case LOAD_RANDOM_POST:
+      return { ...state, randomPost: action.payload };
     case LOAD_POSTS_PAGE:
       return {
         ...state,

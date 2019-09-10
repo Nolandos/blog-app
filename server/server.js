@@ -21,7 +21,6 @@ app.use(express.json());
 app.use(mongoSanitize());
 app.use('/api', postsRoute);
 
-
 // connects our back end code with the database
 mongoose.connect(config.DB, { useNewUrlParser: true });
 let db = mongoose.connection;

@@ -9,7 +9,8 @@ const NavBar = () => {
     { path: '/', title: 'Home' },
     { path: '/posts/new', title: 'Add post' },
     { path: '/posts', title: 'Posts' },
-    { path: '/contact', title: 'Contact' }
+    { path: '/contact', title: 'Contact' },
+    { path: '/posts/randomPost', title: 'Random Post' }
   ]);
 
   return (

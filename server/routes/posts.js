@@ -11,6 +11,8 @@ const router = express.Router();
 router.get('/posts', postControllers.getPosts );
 //get single post
 router.get('/posts/:id', postControllers.getSinglePost);
+//get a random post
+router.get('/posts/random/:id', postControllers.getRandomPost);
 //add post
 router.post('/posts', postControllers.addPost );
 //update post
