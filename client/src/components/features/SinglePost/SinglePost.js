@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { loadSinglePostRequest } from '../../../redux/postsReducer'
+import { useDispatch, useSelector } from 'react-redux';
+import { loadSinglePostRequest } from '../../../redux/postsReducer';
 
 import Spinner from '../../common/Spinner/Spinner';
 import Alert from '../../common/Alert/Alert';
