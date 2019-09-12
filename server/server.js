@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const loadTestData = require('./testData');
+const path = require('path');
 
 //Import Routes
 const postsRoute  = require('./routes/posts');
@@ -20,6 +21,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(mongoSanitize());
 app.use('/api', postsRoute);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '/../client/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+  });
 
 // connects our back end code with the database
 mongoose.connect(config.DB, { useNewUrlParser: true });
