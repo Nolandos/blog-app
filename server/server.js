@@ -10,6 +10,7 @@ const path = require('path');
 
 //Import Routes
 const postsRoute  = require('./routes/posts');
+const mailRoute  = require('./routes/mail');
 
 //Create app 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(mongoSanitize());
 app.use('/api', postsRoute);
+app.use('/api', mailRoute);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/../client/build')));

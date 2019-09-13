@@ -1,0 +1,29 @@
+@import '../../../styles/settings.scss';
+
+.message-field {
+    position: relative;
+    display: block;
+    margin: $base-size * 2 0 $base-size 0;
+    width: 900px;
+    height: 200px;
+
+    border: none;
+    border-bottom: 1px solid $color-text-light;
+    font-family: inherit;
+    outline: none;
+    font-size: inherit;
+    padding: $base-size / 2 0;
+    transition: .2s;
+    opacity: 0.8;
+    background: none;
+
+    &:hover {
+        opacity: 1;
+      }
+  
+    &:focus {
+        border-bottom: 2px solid $color-primary;
+        opacity: 1;
+    }
+    
+}

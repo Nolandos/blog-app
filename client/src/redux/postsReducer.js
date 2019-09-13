@@ -125,6 +125,22 @@ export const getRandomPost = (id) => {
   };
 };
 
+export const sendEmailRequest = (email) => {
+  return async dispatch => {
+    dispatch(startRequest());
+  
+    try {
+      let res = await axios.post(`${API_URL}/send`, email);
+      dispatch(endRequest());
+      console.log(res);
+    } catch(e) {
+      console.log(e);
+      dispatch(errorRequest(e.message));
+    }
+
+  };
+};
+
 //INITIAL STATE
 const initialState = {
   data: [],
