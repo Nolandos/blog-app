@@ -4,7 +4,7 @@ import './Pagination.scss';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const Pagination = (props) => {
-    const [presentPage, setPage] = useState(props.initialPage || 1);
+    const [presentPage, setPage] = useState(props.initialPage || 5);
     const { pages, onPageChange } = props;
 
     const changePage = (newPage) => {

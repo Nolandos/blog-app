@@ -12,7 +12,7 @@ const SinglePost = ({ title, author, content, ...props }) => {
 
     return (
         <div>
-            <FacebookProvider appId={FACEBOOK_API_ID}>
+            <FacebookProvider appId="391940735073188">
                 <PageTitle>{ title }</PageTitle>
                 <ShareButton className="button button--danger" href={`${BASE_URL}${location.pathname}`}>
                     Share

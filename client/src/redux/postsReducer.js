@@ -134,8 +134,6 @@ export const sendEmailRequest = (email) => {
       dispatch(endRequest());
       console.log(res);
     } catch(e) {
-      console.log({e})
-      console.log(e.response.data);
       dispatch(errorRequest(e.response.data));
     }
 

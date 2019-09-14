@@ -33,7 +33,7 @@ const ContactEmail = () => {
         dispatch(sendEmailRequest(email));
     }
     
-    if(request.success) return <Alert variant="success">Post has been added!</Alert>
+    if(request.success) return <Alert variant="success">Wysłano wiadomość!</Alert>
     else if(request.pending) return <Spinner />
     else return (
         <form onSubmit={sendEmail}>
