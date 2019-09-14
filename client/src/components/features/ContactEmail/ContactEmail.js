@@ -32,12 +32,12 @@ const ContactEmail = () => {
         } 
         dispatch(sendEmailRequest(email));
     }
-
-    if(request.error) return <Alert variant="error">{request.error}</Alert>
-    else if(request.success) return <Alert variant="success">Post has been added!</Alert>
+    
+    if(request.success) return <Alert variant="success">Post has been added!</Alert>
     else if(request.pending) return <Spinner />
     else return (
         <form onSubmit={sendEmail}>
+        { request.error && <Alert variant="error">{request.error}</Alert>}
             <TextField
                 label="Your Email"
                 type="email"
