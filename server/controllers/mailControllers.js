@@ -13,8 +13,8 @@ exports.sendEmail = async (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS
+            user: 'nolandos.test@gmail.com',
+            pass: '7NOLANDtest123@'
         }
     });
 
@@ -27,13 +27,13 @@ exports.sendEmail = async (req, res) => {
 
     // send mail with defined transport object
     if(req.body.address === '' || req.body.subject === '' || req.body.content === '') {
-        res.status(500).json('Uzupełnij Pola!')
+        res.status(500).json('Complete the fields!')
     } else {
     await transporter.sendMail(mailOptions, function (err, info) {
         if(err)
           console.log(err)
         else
-          res.status(200).json('Wysłano!');
+          res.status(200).json('Sent!');
           console.log(info);
      });
     console.log('Message sent: %s', info.messageId);
