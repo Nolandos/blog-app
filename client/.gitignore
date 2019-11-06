@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /inne
+/build
 
 # testing
 /coverage
