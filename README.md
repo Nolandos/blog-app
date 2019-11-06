@@ -1,5 +1,5 @@
 # blog-app
-MERN blog app. You number of entries, add new post or edit existing. If you want, you can write a comment under selected post.
+MERN blog app. You can see list of all entries, add new post or edit existing. If you want, you can write a comment under selected post. You can get a random posts "for today".
 
 # Demo : 
 App was deployed on Heroku server:
